@@ -11,39 +11,39 @@ public class MovieRepository {
 
 
 
-    public HashMap<String,Movie> movies=new HashMap<>();
-    public HashMap<String,Director> directors=new HashMap<>();
+    public List<Movie> movies=new ArrayList<>();
+    public List<Director> directors=new ArrayList<>();
     public HashMap<Movie,Director> movieDirectorPair=new HashMap<>();
 
     public List<Movie> getAllMovies(){
 
-        List<Movie> allMovies=new ArrayList<>();
-        for(Movie movie:movies.values()){
-            allMovies.add(movie);
-        }
-        return allMovies;
+        return movies;
     }
 
     public void addMovie(Movie movie){
 
-        movies.put(movie.getName(),movie);
+        movies.add(movie);
 
     }
     public void addDirector(Director director){
 
-        directors.put(director.getName(),director);
+        directors.add(director);
     }
 
     public Movie getMovieByName(String name){
-        if(movies.containsKey(name)){
-            return movies.get(name);
+        for(int i=0;i<movies.size();i++){
+            if(movies.get(i).getName().equals(name)){
+                return movies.get(i);
+            }
         }
         return null;
     }
 
     public Director getDirectorByName(String name){
-        if(directors.containsKey(name)){
-            return directors.get(name);
+        for(int i=0;i<directors.size();i++){
+            if(directors.get(i).getName().equals(name)){
+                return directors.get(i);
+            }
         }
         return null;
     }
@@ -52,29 +52,39 @@ public class MovieRepository {
         Movie moviePair=null;
         Director directorPair=null;
 
-        moviePair=movies.get(movie);
-        directorPair=directors.get(director);
+        for(int i=0;i<movies.size();i++){
+            if(movies.get(i).getName().equals(movie)){
+                moviePair=movies.get(i);
+            }
+        }
+        for(int i=0;i<directors.size();i++){
+            if(directors.get(i).getName().equals(director)){
+                directorPair=directors.get(i);
+            }
+        }
 
         movieDirectorPair.put(moviePair,directorPair);
     }
 
     public void deleteDirectorByName(String name){
 
-        if(directors.containsKey(name)){
-            directors.remove(name);
+        for(int i=0;i<directors.size();i++){
+            if(directors.get(i).getName().equals(name)){
+                directors.remove(directors.get(i));
+            }
         }
         for(Movie movie:movieDirectorPair.keySet()){
                 if(movieDirectorPair.get(movie).getName().equals(name)){
                     movieDirectorPair.remove(movie);
-                    movies.remove(movie.getName());
+                    movies.remove(movie);
             }
         }
     }
 
     public void deleteAllDirectors(){
-        directors=new HashMap<>();
+        directors=new ArrayList<>();
         for(Movie movie:movieDirectorPair.keySet()){
-            movies.remove(movie.getName());
+            movies.remove(movie);
         }
         movieDirectorPair=new HashMap<>();
     }
