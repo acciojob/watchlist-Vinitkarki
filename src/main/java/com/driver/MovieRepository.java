@@ -24,31 +24,31 @@ public class MovieRepository {
         return allMovies;
     }
 
-    void addMovie(Movie movie){
+    public void addMovie(Movie movie){
 
         movies.put(movie.getName(),movie);
 
     }
-    void addDirector(Director director){
+    public void addDirector(Director director){
 
         directors.put(director.getName(),director);
     }
 
-    Movie getMovieByName(String name){
+    public Movie getMovieByName(String name){
         if(movies.containsKey(name)){
             return movies.get(name);
         }
         return null;
     }
 
-    Director getDirectorByName(String name){
+    public Director getDirectorByName(String name){
         if(directors.containsKey(name)){
             return directors.get(name);
         }
         return null;
     }
 
-    void addMovieDirectorPair(String movie,String director){
+    public void addMovieDirectorPair(String movie,String director){
         Movie moviePair=null;
         Director directorPair=null;
 
@@ -58,7 +58,7 @@ public class MovieRepository {
         movieDirectorPair.put(moviePair,directorPair);
     }
 
-    void deleteDirectorByName(String name){
+    public void deleteDirectorByName(String name){
 
         if(directors.containsKey(name)){
             directors.remove(name);
@@ -71,7 +71,7 @@ public class MovieRepository {
         }
     }
 
-    void deleteAllDirectors(){
+    public void deleteAllDirectors(){
         directors=new HashMap<>();
         for(Movie movie:movieDirectorPair.keySet()){
             movies.remove(movie.getName());
