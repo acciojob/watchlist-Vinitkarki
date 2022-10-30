@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
+import java.util.List;
 
 @RestController
 public class MovieController {
@@ -53,7 +54,7 @@ public class MovieController {
     }
 
     @GetMapping("/movies/get-all-movies")
-    public ResponseEntity getAllMovies(){
+    public ResponseEntity findAllMovies(){
         try{
             return new ResponseEntity<>(movieService.gelAllMovies(),HttpStatus.OK);
         }
@@ -74,5 +75,12 @@ public class MovieController {
 
         movieService.deleteAllDirectors();
         return new ResponseEntity<>("success",HttpStatus.OK);
+    }
+
+    @GetMapping("/movies/get-movies-by-director-name/{director}")
+    public ResponseEntity getMoviesByDirectorName(@PathVariable("director")String director){
+
+        List<Movie> allMovies=movieService.getMoviesByDirectorName(director);
+        return new ResponseEntity<>(allMovies,HttpStatus.OK);
     }
 }

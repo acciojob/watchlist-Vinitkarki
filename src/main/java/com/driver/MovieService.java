@@ -45,4 +45,10 @@ public class MovieService {
     public void deleteAllDirectors(){
         movieRepository.deleteAllDirectors();
     }
+
+    public List<Movie> getMoviesByDirectorName(String director){
+
+        return movieRepository.getMoviesByDirectorName(director);
+
+    }
 }

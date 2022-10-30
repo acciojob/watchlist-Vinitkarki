@@ -79,4 +79,14 @@ public class MovieRepository {
         movieDirectorPair=new HashMap<>();
     }
 
+    public List<Movie> getMoviesByDirectorName(String director){
+        List<Movie> allMovies=new ArrayList<>();
+        for(Movie movie:movieDirectorPair.keySet()){
+            if(movieDirectorPair.get(movie).getName().equals(director)){
+                allMovies.add(movie);
+            }
+        }
+        return allMovies;
+    }
+
 }
