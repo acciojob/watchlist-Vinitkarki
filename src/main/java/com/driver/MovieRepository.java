@@ -32,7 +32,7 @@ public class MovieRepository {
 
     public Movie getMovieByName(String name){
         for(int i=0;i<movies.size();i++){
-            if(movies.get(i).getName().equals(name)){
+            if((movies.get(i).getName()).equals(name)){
                 return movies.get(i);
             }
         }
@@ -41,7 +41,7 @@ public class MovieRepository {
 
     public Director getDirectorByName(String name){
         for(int i=0;i<directors.size();i++){
-            if(directors.get(i).getName().equals(name)){
+            if((directors.get(i).getName()).equals(name)){
                 return directors.get(i);
             }
         }
@@ -53,12 +53,12 @@ public class MovieRepository {
         Director directorPair=null;
 
         for(int i=0;i<movies.size();i++){
-            if(movies.get(i).getName().equals(movie)){
+            if((movies.get(i).getName()).equals(movie)){
                 moviePair=movies.get(i);
             }
         }
         for(int i=0;i<directors.size();i++){
-            if(directors.get(i).getName().equals(director)){
+            if((directors.get(i).getName()).equals(director)){
                 directorPair=directors.get(i);
             }
         }
@@ -69,7 +69,7 @@ public class MovieRepository {
     public void deleteDirectorByName(String name){
 
         for(int i=0;i<directors.size();i++){
-            if(directors.get(i).getName().equals(name)){
+            if((directors.get(i).getName()).equals(name)){
                 directors.remove(directors.get(i));
             }
         }
