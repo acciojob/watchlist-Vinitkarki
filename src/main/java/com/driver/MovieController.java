@@ -78,7 +78,7 @@ public class MovieController {
     public ResponseEntity getMoviesByDirectorName(@PathVariable String director){
 
         //System.out.println(director);
-        List<Movie> allMovies=movieService.getMoviesByDirectorName(director);
+        List<String> allMovies=movieService.getMoviesByDirectorName(director);
         if(!allMovies.isEmpty()) {
             return new ResponseEntity<>(allMovies, HttpStatus.OK);
         }

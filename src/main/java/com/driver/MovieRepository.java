@@ -99,13 +99,13 @@ public class MovieRepository {
         movieDirectorPair=new HashMap<>();
     }
 
-    public List<Movie> getMoviesByDirectorName(String director){
-        List<Movie> allMovies=new ArrayList<>();
+    public List<String> getMoviesByDirectorName(String director){
+        List<String> allMovies=new ArrayList<>();
         for(Movie movie:movieDirectorPair.keySet()){
             String directorName=movieDirectorPair.get(movie).getName();
             if(directorName.equals(director)){
                // System.out.println((movieDirectorPair.get(movie)).getName());
-                allMovies.add(movie);
+                allMovies.add(movie.getName());
             }
         }
         return allMovies;
