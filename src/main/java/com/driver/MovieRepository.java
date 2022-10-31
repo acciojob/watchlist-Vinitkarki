@@ -53,12 +53,14 @@ public class MovieRepository {
         Director directorPair=null;
 
         for(int i=0;i<movies.size();i++){
-            if((movies.get(i).getName()).equals(movie)){
+            String movieName=movies.get(i).getName();
+            if(movieName.equals(movie)){
                 moviePair=movies.get(i);
             }
         }
         for(int i=0;i<directors.size();i++){
-            if((directors.get(i).getName()).equals(director)){
+            String directorName=directors.get(i).getName();
+            if(directorName.equals(director)){
                 directorPair=directors.get(i);
             }
         }
@@ -68,16 +70,24 @@ public class MovieRepository {
 
     public void deleteDirectorByName(String name){
 
+        List<Movie> toBeDeleted=new ArrayList<>();
+        Director deleting=null;
         for(int i=0;i<directors.size();i++){
-            if((directors.get(i).getName()).equals(name)){
-                directors.remove(directors.get(i));
+            String directorName=directors.get(i).getName();
+            if(directorName.equals(name)){
+                deleting=directors.get(i);
             }
         }
+        directors.remove(deleting);
         for(Movie movie:movieDirectorPair.keySet()){
-                if(movieDirectorPair.get(movie).getName().equals(name)){
-                    movieDirectorPair.remove(movie);
-                    movies.remove(movie);
+                String directorName=movieDirectorPair.get(movie).getName();
+                if(directorName.equals(name)){
+                    toBeDeleted.add(movie);
             }
+        }
+        for(int i=0;i<toBeDeleted.size();i++){
+            movieDirectorPair.remove(toBeDeleted.get(i));
+            movies.remove(toBeDeleted.get(i));
         }
     }
 
@@ -92,7 +102,9 @@ public class MovieRepository {
     public List<Movie> getMoviesByDirectorName(String director){
         List<Movie> allMovies=new ArrayList<>();
         for(Movie movie:movieDirectorPair.keySet()){
-            if(movieDirectorPair.get(movie).getName().equals(director)){
+            String directorName=movieDirectorPair.get(movie).getName();
+            if(directorName.equals(director)){
+               // System.out.println((movieDirectorPair.get(movie)).getName());
                 allMovies.add(movie);
             }
         }
